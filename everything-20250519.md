@@ -150,7 +150,29 @@ end
 puts block_var    # NameError
 ```
 
-#### (Conditionals)
+### (( Control expressions ))
+
+#### while / until / for loops
+
+These loops are not implemented as methods and thus do not create new variable scopes.
+
+- [ ] example
+
+#### Conditional statements
+
+Conditional statements, including their individual branches, do not define separate scopes—they are part of normal execution flow of the program.
+
+*Note:*
+
+If a branch within which a variable initialisation occurs is not executed, the variable will still be initialised for use in the program, though its value will be `nil`.
+
+```ruby
+if false
+  var = "hello"
+end
+
+var #=> nil
+```
 
 ### Variable shadowing
 
@@ -213,8 +235,6 @@ Back in the outer code, on line 8, `puts` outputs the value of the outer variabl
 
 2. Methods can access objects passed in as arguments which are assigned to corresponding method parameters, making them available as local variables to the method
 
-**Variable isolation**
-- 
 ##### Code example & language
 
 ```ruby
@@ -501,7 +521,9 @@ The method return value is the last evaluated expression in the method body, whi
 
 If `return` is reached in the middle of the method, the rest of the code in the method is ignored and the expression/value following `return` is what the method returns.
 
-Methods return a value back to the calling code / where it's called from. 
+Methods return their value back to the calling code / where it's called from. 
+
+(Empty methods return `nil`.)
 
 ##### Code example & language
 
